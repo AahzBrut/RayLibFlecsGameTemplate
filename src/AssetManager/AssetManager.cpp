@@ -16,14 +16,16 @@ AssetManager::~AssetManager() {
 }
 
 void AssetManager::Clear() {
-    for (const auto &value: std::views::values(textures)) {
+    for (const auto [assetId, value]: std::views::all(textures)) {
         UnloadTexture(*value);
+        LOG("Texture unloaded: '{}'", assetId);
     }
     for (const auto &value: std::views::values(soundEffects)) {
         UnloadSound(*value);
     }
-    for (const auto &value: std::views::values(musicTrucks)) {
+    for (const auto [assetId, value]: std::views::all(musicTrucks)) {
         UnloadMusicStream(*value);
+        LOG("Music unloaded: '{}'", assetId);
     }
     for (const auto &value: std::views::values(fonts)) {
         UnloadFont(*value);
@@ -81,14 +83,17 @@ void AssetManager::LoadTexture(const String &assetId, const String &path) {
 void AssetManager::LoadSound(const String &assetId, const String &path) {
     const auto asset = std::make_shared<Sound>(::LoadSound(path.c_str()));
     soundEffects[assetId] = asset;
+    LOG("Sound loaded: '{}' from '{}'", assetId, path);
 }
 
 void AssetManager::LoadMusic(const String &assetId, const String &path) {
     const auto asset = std::make_shared<Music>(LoadMusicStream(path.c_str()));
     musicTrucks[assetId] = asset;
+    LOG("Music loaded: '{}' from '{}'", assetId, path);
 }
 
 void AssetManager::LoadFont(const String &assetId, const String &path) {
     const auto asset = std::make_shared<Font>(::LoadFont(path.c_str()));
     fonts[assetId] = asset;
+    LOG("Font loaded: '{}' from '{}'", assetId, path);
 }
