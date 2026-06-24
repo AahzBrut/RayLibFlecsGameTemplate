@@ -20,15 +20,17 @@ void AssetManager::Clear() {
         UnloadTexture(*value);
         LOG("Texture unloaded: '{}'", assetId);
     }
-    for (const auto &value: std::views::values(soundEffects)) {
+    for (const auto [assetId, value]: std::views::all(soundEffects)) {
         UnloadSound(*value);
+        LOG("Sound unloaded: '{}'", assetId);
     }
     for (const auto [assetId, value]: std::views::all(musicTrucks)) {
         UnloadMusicStream(*value);
         LOG("Music unloaded: '{}'", assetId);
     }
-    for (const auto &value: std::views::values(fonts)) {
+    for (const auto [assetId, value]: std::views::all(fonts)) {
         UnloadFont(*value);
+        LOG("Font unloaded: '{}'", assetId);
     }
     textures.clear();
     soundEffects.clear();
