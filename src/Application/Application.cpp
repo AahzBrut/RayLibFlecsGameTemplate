@@ -17,8 +17,8 @@ void Application::Initialize() const { // NOLINT(*-convert-member-functions-to-s
     // ecsWorld.set<flecs::Rest>({});
 
     RegisterComponents(ecsWorld);
-    ecsWorld.set(AssetManager{});
-    ecsWorld.set(AudioManager{});
+    ecsWorld.emplace<AssetManager>();
+    ecsWorld.emplace<AudioManager>();
     RegisterSystems(ecsWorld);
 }
 
