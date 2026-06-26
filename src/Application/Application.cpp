@@ -14,11 +14,6 @@ void Application::Initialize() const { // NOLINT(*-convert-member-functions-to-s
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game template");
     InitAudioDevice();
 
-    // SetTargetFPS(60);
-    // ecsWorld.import<flecs::units>();
-    // ecsWorld.import<flecs::stats>();
-    // ecsWorld.set<flecs::Rest>({});
-
     RegisterComponents(ecsWorld);
     ecsWorld.emplace<AssetManager>();
     ecsWorld.emplace<AudioManager>();
