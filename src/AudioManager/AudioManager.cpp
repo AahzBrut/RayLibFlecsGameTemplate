@@ -1,9 +1,9 @@
-#include "AudioManager.h"
+#include "AudioManager/AudioManager.h"
 
 #include "Logger.h"
 
 
-void AudioManager::PlaySoundEffect(const Shared<Sound> &sound) {
+void AudioManager::PlaySoundEffect(const Shared<Sound>& sound) {
     sounds.emplace_back(sound, LoadSoundAlias(*sound));
     PlaySound(sounds.back().second);
 }
@@ -13,7 +13,8 @@ void AudioManager::Update() {
         if (!IsSoundPlaying(iterator->second)) {
             UnloadSoundAlias(iterator->second);
             iterator = sounds.erase(iterator);
-        } else {
+        }
+        else {
             ++iterator;
         }
     }

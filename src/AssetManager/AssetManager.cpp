@@ -16,19 +16,19 @@ AssetManager::~AssetManager() {
 }
 
 void AssetManager::Clear() {
-    for (const auto [assetId, value]: std::views::all(textures)) {
+    for (const auto& [assetId, value]: std::views::all(textures)) {
         UnloadTexture(*value);
         LOG("Texture unloaded: '{}'", assetId);
     }
-    for (const auto [assetId, value]: std::views::all(soundEffects)) {
+    for (const auto& [assetId, value]: std::views::all(soundEffects)) {
         UnloadSound(*value);
         LOG("Sound unloaded: '{}'", assetId);
     }
-    for (const auto [assetId, value]: std::views::all(musicTrucks)) {
+    for (const auto& [assetId, value]: std::views::all(musicTrucks)) {
         UnloadMusicStream(*value);
         LOG("Music unloaded: '{}'", assetId);
     }
-    for (const auto [assetId, value]: std::views::all(fonts)) {
+    for (const auto& [assetId, value]: std::views::all(fonts)) {
         UnloadFont(*value);
         LOG("Font unloaded: '{}'", assetId);
     }

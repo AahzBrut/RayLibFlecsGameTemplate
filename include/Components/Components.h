@@ -1,4 +1,5 @@
 #pragma once
+#include <flecs.h>
 #include "AssetManager/AssetManager.h"
 #include "AudioManager/AudioManager.h"
 

@@ -1,15 +1,8 @@
-//
-// Created by artemenko_pa on 24.06.2026.
-//
-#pragma once
-
-#include <flecs.h>
-#include <raylib.h>
-
+#include "Systems/PlayMusicSystem.h"
 #include "AssetManager/AssetManager.h"
 
 
-inline void PlayMusicSystem(const flecs::world &ecsWorld) {
+void PlayMusicSystem(const flecs::world &ecsWorld) {
     auto assetManager = &ecsWorld.get_mut<AssetManager>();
 
     ecsWorld.system()

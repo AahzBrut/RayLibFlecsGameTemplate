@@ -1,12 +1,8 @@
-//
-// Created by artemenko_pa on 24.06.2026.
-//
-#pragma once
-
-#include <flecs.h>
 #include "AssetManager/AssetManager.h"
+#include "Systems/AssetLoadSystem.h"
 
-inline void AssetsLoadSystem(const flecs::world &ecsWorld) {
+
+void AssetsLoadSystem(const flecs::world &ecsWorld) {
     ecsWorld.system()
             .kind(flecs::OnStart)
             .run([&](flecs::iter &_) {

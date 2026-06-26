@@ -1,7 +1,10 @@
-#include "Application.h"
+#include "Application/Application.h"
+
 #include <raylib.h>
 
 #include "defs.h"
+#include "imgui.h"
+#include "rlImGui.h"
 #include "Components/Components.h"
 #include "Systems/Systems.h"
 
@@ -24,6 +27,10 @@ void Application::Initialize() const { // NOLINT(*-convert-member-functions-to-s
 
 void Application::Run() {
     Initialize();
+    rlImGuiSetup(true);
+    ImGuiIO& io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    io.FontGlobalScale = 2.0;
 
     while (!WindowShouldClose()) {
         BeginDrawing();
@@ -31,8 +38,16 @@ void Application::Run() {
 
         ecsWorld.progress(GetFrameTime());
 
+        rlImGuiBegin();
+        ImGui::Begin("Debug Info");
+        ImGui::Text("FPS: %d", GetFPS());
+        ImGui::Button("Test button");
+        ImGui::End();
+        rlImGuiEnd();
+
         EndDrawing();
     }
+    rlImGuiShutdown();
     DeInitialize();
 }
 
