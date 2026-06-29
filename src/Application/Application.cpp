@@ -4,6 +4,7 @@
 
 #include "defs.h"
 #include "imgui.h"
+#include "imgui_internal.h"
 #include "rlImGui.h"
 #include "Components/Components.h"
 #include "Systems/Systems.h"
@@ -34,9 +35,23 @@ void Application::Run() {
         ecsWorld.progress(GetFrameTime());
 
         rlImGuiBegin();
+        ImGui::DockSpaceOverViewport();
+
         ImGui::Begin("Debug Info");
-        ImGui::Text("FPS: %d", GetFPS());
+
+        ImGui::BeginTable("Debug values", 2, ImGuiTableFlags_Borders);
+        ImGui::TableSetupColumn("Name");
+        ImGui::TableSetupColumn("Value");
+        ImGui::TableHeadersRow();
+        ImGui::TableNextRow();
+        ImGui::TableNextColumn();
+        ImGui::Text("FPS");
+        ImGui::TableNextColumn();
+        ImGui::Text("%d", GetFPS());
+        ImGui::EndTable();
+
         ImGui::Button("Test button");
+
         ImGui::End();
         rlImGuiEnd();
 

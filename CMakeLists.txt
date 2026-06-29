@@ -57,7 +57,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCES})
 target_link_options(${CMAKE_PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++ -static)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE raylib flecs_static rlimgui)
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ./include)
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ./src)
 
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD COMMAND
         ${CMAKE_COMMAND} -E copy_directory_if_different
